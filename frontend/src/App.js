@@ -1,6 +1,6 @@
 import { LaptopOutlined, NotificationOutlined, UserOutlined ,HomeOutlined} from '@ant-design/icons';
-import { Breadcrumb, Layout, Menu, theme } from 'antd';
-import React from 'react';
+import { Breadcrumb, Layout, Menu, theme ,Switch } from 'antd';
+import React, { useState } from 'react';
 
 import { Route, Routes } from 'react-router-dom';
 import { Anchor } from 'antd';
@@ -15,13 +15,28 @@ const { Header, Content } = Layout;
 
 
 const App = () => {
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
+  const [theme , setTheme] = useState('dark')
+
+
+ 
+
+  const Changetheme = (theme) =>{
+
+    setTheme(theme ? 'dark' : 'light');
+}
+        
+  
   return (
     <Layout style={{ minHeight: '100vh' }} >
+
+          <Switch
+        checked={theme === 'dark'}
+        onChange={Changetheme}
+        checkedChildren="Dark"
+        unCheckedChildren="Light"
+      />
       
-       < Navbar />
+       < Navbar  Changethemepage = {theme}/>
     
       <Content
         style={{
@@ -33,7 +48,7 @@ const App = () => {
           style={{
             marginTop: '3vh',
             padding: '24px 0',
-            background: colorBgContainer,
+           // background: colorBgContainer,
           }}
         >   
           <Content
@@ -51,7 +66,7 @@ const App = () => {
           </Content>
         </Layout>
       </Content>
-     <Footerbar />
+     <Footerbar Changethemepage = {theme} />
     </Layout>
   );
 };

@@ -1,5 +1,5 @@
-import React from 'react'
-import { Menu} from 'antd';
+import React, { useState } from 'react'
+import { Menu, Switch} from 'antd';
 import { AppstoreOutlined, MailOutlined, SettingOutlined ,HomeOutlined ,LoginOutlined ,UserAddOutlined, UserOutlined  } from '@ant-design/icons';
 
 import { Typography } from 'antd';
@@ -8,12 +8,20 @@ const { Title } = Typography;
 const SubMenu = Menu.SubMenu;
 
 
-const Navbar = () => {
+
+
+const Navbar = (props) => {
+ 
+         const theme = props.Changethemepage
+
+
+       
   return (
     <div>
+      
         
       <Menu
-        mode="horizontal" title='Profile' theme='dark' style={{ width : '100%'}}
+        mode="horizontal" title='Profile' theme={theme} style={{ width : '100%'}}
       >
       <Menu.Item key="profilelogo" style={{ textAlign:'left',fontSize:'7vh',paddingRight:'5vh' }} ><Link to="/home" >Profile</Link>  </Menu.Item>
       <Menu.Item key="home"  icon={ < HomeOutlined  />} style={{width : "10%"}}><Link to="/home" >Home</Link>  </Menu.Item>

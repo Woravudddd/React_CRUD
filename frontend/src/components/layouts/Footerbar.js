@@ -1,24 +1,30 @@
-import React from 'react'
-import { Breadcrumb, Layout, Menu, theme } from 'antd';
- 
+import React, { useEffect, useState } from 'react'
+import { Breadcrumb, Layout, Menu, theme  } from 'antd';
+
 const { Footer } = Layout;
 
-const Footerbar = () => {
+const Footerbar = (props) => {
+  
+  console.log(props.Changethemepage)
+
+
+  
   return (
+    
     <div>
-         <Footer
-       
-        style={{
-          marginTop: '5vh',
-          textAlign: 'center',
-          background: 'black',
-          color: 'white',
-          
-        }}
-        
-      >
-         Profile
+    
+       <Footer style={{ backgroundColor : props.Changethemepage+'blue' ,
+                        textAlign: 'center',
+                        color:'dark' }}  >
+
+                &copy; Woravud Duangoracha  
+
+
+           
+                        
       </Footer>
+         
+    
       
     </div>
   )

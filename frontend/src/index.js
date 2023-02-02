@@ -5,14 +5,24 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import 'antd/dist/reset.css';
+import { Provider } from 'react-redux';
+import { configureStore } from '@reduxjs/toolkit';
+//import rootReducer from './components/reducers/index';
+//import { UseReducersFunc } from './components/reducers/UseReducers';
+import { composeWithDevTools } from 'redux-devtools-extension';
 //import { Routes, Route } from 'react-router-dom';
+import   UseReducersFunc  from './components/reducers/UseReducers';
+const  store = configureStore({reducer: UseReducersFunc})
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <React.StrictMode>
+    <Provider store={store}>
     <BrowserRouter>
     <App />
     </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
 
