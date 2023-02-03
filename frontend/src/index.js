@@ -9,10 +9,18 @@ import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 //import rootReducer from './components/reducers/index';
 //import { UseReducersFunc } from './components/reducers/UseReducers';
-import { composeWithDevTools } from 'redux-devtools-extension';
+//import { composeWithDevTools } from 'redux-devtools-extension';
 //import { Routes, Route } from 'react-router-dom';
 import   UseReducersFunc  from './components/reducers/UseReducers';
-const  store = configureStore({reducer: UseReducersFunc})
+const  store = configureStore({reducer:{
+  
+                   userRole: UseReducersFunc
+
+
+
+    },
+
+})
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 

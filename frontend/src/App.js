@@ -1,28 +1,41 @@
-import { LaptopOutlined, NotificationOutlined, UserOutlined ,HomeOutlined} from '@ant-design/icons';
-import { Breadcrumb, Layout, Menu, theme ,Switch } from 'antd';
+import { Layout ,Switch } from 'antd';
 import React, { useState } from 'react';
 
 import { Route, Routes } from 'react-router-dom';
-import { Anchor } from 'antd';
 
+import MemberHome from './components/page/member/Home';
+import AdminHome from './components/page/adminpage/Home';
 import Register from './components/page/auth/Register';
 import Login from './components/page/auth/Login';
 import Homepage from './components/page/Homepage';
 import Navbar from './components/layouts/Navbar';
 import Footerbar from './components/layouts/Footerbar';
+import { authCurrent } from './components/function/auth'
 
-const { Header, Content } = Layout;
+const { Content } = Layout;
 
 
 const App = () => {
   const [theme , setTheme] = useState('dark')
 
+  const token = localStorage.token
+  
+  if(token){
 
- 
+         authCurrent(token).then((res) =>{
 
+         console.log(res)
+          //console.log('hello')
+       }).catch((err)=>{
+
+            console.log(err)
+
+       }); 
+  }
   const Changetheme = (theme) =>{
 
     setTheme(theme ? 'dark' : 'light');
+
 }
         
   
@@ -62,6 +75,10 @@ const App = () => {
           <Route path='/home' element={<Homepage />} ></Route>
           <Route path='/register' element={<Register />} ></Route>
           <Route path='/login' element={<Login />} ></Route>
+
+
+          <Route path='/admin/index' element={ < AdminHome /> } />
+          <Route path='/member/index' element={ < MemberHome /> } />
        </Routes>
           </Content>
         </Layout>

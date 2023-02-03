@@ -1,24 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { useReducer } from "react";
+//import { useReducer } from "react";
 //import { Action } from "@remix-run/router";
 
 export const UseReducersFunc = createSlice({
-    name : 'test',
+    name : 'users',
     initialState:{
-         value : 0
+         user : 'Hello',
+         value: 0,
     },
    
 reducers:{
-    increment : state => {
+    increment : (state , action) => {
+          state.user = action.payload  
 
-        state.value++
+        
     },
     decrement : state =>{
-        state.value--
+        state.user = 'Logout'
     },
 
     incrementAmount : (state,action) => {
-        state.value += action.payload
+        state.user  = action.payload
     },
 },
 

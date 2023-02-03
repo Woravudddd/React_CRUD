@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import { Menu, Switch} from 'antd';
-import { AppstoreOutlined, MailOutlined, SettingOutlined ,HomeOutlined ,LoginOutlined ,UserAddOutlined, UserOutlined  } from '@ant-design/icons';
+import React from 'react'
+import { Menu} from 'antd';
+import { SettingOutlined ,HomeOutlined ,LoginOutlined ,UserAddOutlined, UserOutlined  } from '@ant-design/icons';
 
-import { Typography } from 'antd';
+
 import { Link } from 'react-router-dom';
-const { Title } = Typography;
+
 const SubMenu = Menu.SubMenu;
 
 
