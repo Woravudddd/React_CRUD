@@ -1,21 +1,33 @@
-const Jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken')
 
 exports.auth = (req,res,next) => 
     {
         try{
-            const token = req.headers["authtoken"]
+           // const token = req.headers["authtoken"]
+          
+            const token = req.headers['authtoken']
+            
+            console.log('this is token ' +token)
             
             if(!token){
+                console.log('token not found')
                 return res.status(401).send('token not found, authorization denied')
 
             }
-            const decoded = Jwt.verify(token,"Jwt Secret")
-            console.log(decoded);
+           
+            const decoded = jwt.verify( token , "secret" )
+
+          
+
+            console.log('this is de decode',decoded);
+ 
+            next()
+            
             //req.user = decode.user
-                next()
+           
         }catch(err){
             console.log(err)
-            res.send(401).send('Token invalid')
+            res.status(401).send('Token invalid')
 
         }
 

@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router() //router api 
-const {register, listUser, updateUser, deleteUser,login} = require('../controllers/auth') 
+const {register, listUser, updateUser, deleteUser,login ,authCurrent} = require('../controllers/auth') 
+
+const { auth } = require('../middleware/auth')
 
 
 //ROUTE
@@ -19,6 +21,8 @@ router.put('/auth',updateUser)
 
 
 router.delete('/auth',deleteUser)
+
+router.post('/authUser',auth, authCurrent)
 
 
 

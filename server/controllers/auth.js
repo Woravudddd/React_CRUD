@@ -1,6 +1,8 @@
+
 const bcrypt = require('bcryptjs')
 const User = require('../models/User')
-const Jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken')
+
 
 
 exports.login = async(req,res)=>{
@@ -19,15 +21,21 @@ exports.login = async(req,res)=>{
             const payload = {
                 user:{
                     username: user.username,
-                    role : user.role
+                    role : user.role,
                 },
 
             };
-            Jwt.sign(payload,'JwtSecret',{expiresIn : 3600}, (err,token)=>{ 
-             if(err) throw err;
-             res.json({token,payload})       
-
+            const accessToken = jwt.sign({ username: user.username, role: user.role }, accessTokenSecret, { expiresIn: '20m' });
+            const refreshToken = jwt.sign({ username: user.username, role: user.role }, refreshTokenSecret);
+    
+            refreshTokens.push(refreshToken);
+    
+            res.json({
+                accessToken,
+                refreshToken
             });
+
+           
         }else{
 
               return res.status(400).send({message : 'User Not found '})
@@ -40,6 +48,22 @@ exports.login = async(req,res)=>{
     }
 
 };
+ 
+exports.authCurrent = async(req,res)=>{
+
+    try{
+       // console.log('controller' , req.user);
+
+      //  const userAll = await User.findOne({ username: req.user.username}).exec()
+       // console.log('user ')
+        const user = await User.findOne({username: req}).exec()
+        console.log(user)
+    }catch(err){
+        console.log(err)
+        res.status(500).send('Server Error')
+    }
+};
+
 exports.register = async(req,res)=>{
    
     try{
